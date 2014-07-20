@@ -1,0 +1,9 @@
+1. try big and better icon
+2. set limit of order list, done
+3. only show valid order, done
+4. try white action bar, done
+5. support float money
+6. report list support
+7. printer test
+8. exit, done
+9. copy right
