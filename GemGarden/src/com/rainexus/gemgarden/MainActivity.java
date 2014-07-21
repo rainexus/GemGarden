@@ -93,7 +93,7 @@ public class MainActivity extends Activity {
 	
 	private void Info() {
 		new AlertDialog.Builder(MainActivity.this)  
-		.setTitle("Version 1.0\nCopyright by Rain")  
+		.setTitle("Version 1.0.002\nCopyright by Rain")  
 		.setIcon(R.drawable.ic_launcher)  
 		.setPositiveButton("OK", new DialogInterface.OnClickListener() {  
             public void onClick(DialogInterface dialog,  

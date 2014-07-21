@@ -29,7 +29,7 @@ public final class R {
         public static final int ic_swipe_right=0x7f02000f;
         public static final int ic_text=0x7f020010;
         public static final int ic_trash=0x7f020011;
-        public static final int image_template=0x7f020012;
+        public static final int im_template=0x7f020012;
     }
     public static final class id {
         public static final int action_customer_exit=0x7f070013;

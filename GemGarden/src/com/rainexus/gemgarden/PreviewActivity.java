@@ -91,7 +91,7 @@ public class PreviewActivity extends Activity {
 	    
 	    private void createBitmap() {
 	    	if (template == null)
-	    		template = BitmapFactory.decodeResource(this.getResources(), R.drawable.image_template);
+	    		template = BitmapFactory.decodeResource(this.getResources(), R.drawable.im_template);
 	    	if (newb == null)
 	    		newb  = Bitmap.createBitmap( template.getWidth(), template.getHeight(), Config.ARGB_4444);
 	    	
@@ -100,18 +100,19 @@ public class PreviewActivity extends Activity {
 	    	canvasTemp.drawBitmap(template, 0, 0, p);
 	    	
 	    	p.setColor(Color.BLACK);
-	        p.setTextSize(29);
+	        p.setTextSize(28);
 	        p.setStrokeWidth(4);
 	        p.setTypeface(Typeface.DEFAULT_BOLD);
 	        
-	        int nStartX = template.getWidth() / 9;
-	        int nEndX = template.getWidth() - template.getWidth() / 9;
+	        int nStartX = template.getWidth() / 7;
+	        int nEndX = template.getWidth() - template.getWidth() / 7;
 	        
 	        int nStartY =  (int) (template.getHeight() / 6.5);
 	        int nEndY =  template.getHeight() - template.getHeight() / 7;
-	        int nStepY = (nEndY - nStartY) / 20;
+	        int nStepY = (nEndY - nStartY) / 22;
 	        
 	        nEndY -= nStepY/2;
+	        nEndY -= nStepY;
 	        nStartY += nStepY;
 	        nStartY += nStepY;
 	        nStartY += nStepY/2;
@@ -144,7 +145,7 @@ public class PreviewActivity extends Activity {
 	        canvasTemp.drawLine(nEndX, nFirstY, nEndX, nLastY, p);
 	        
 	        // customer
-	        String date = (DateFormat.format("dd-MM-yyyy hh:mm:ss", new java.util.Date()).toString());
+	        String date = (DateFormat.format("dd-MM-yyyy kk:mm:ss", new java.util.Date()).toString());
 	        String info = mCustomerInfo.GetGeneralStrWithDate(date);
 	        fileName = info;
 	        fileName = fileName.replace(' ', '_');
@@ -152,7 +153,7 @@ public class PreviewActivity extends Activity {
 	        
 	        canvasTemp.drawText("DELIVERY ORDER", nStartX, nFirstY - nStepY/5 - nStepY - nStepY, p);
 	        canvasTemp.drawText("To: " + mCustomerInfo.GetName(), nStartX, nFirstY - nStepY/5 - nStepY, p);
-	        canvasTemp.drawText("Date:" + date, nStartX, nFirstY - nStepY/5 , p);
+	        canvasTemp.drawText("Date: " + date, nStartX, nFirstY - nStepY/5 , p);
 	        
 	        // cols
 	        /*
@@ -191,7 +192,7 @@ public class PreviewActivity extends Activity {
 	        	}
 	        }
 	        
-	        p.setTextSize(20);
+	        p.setTextSize(19);
 	        canvasTemp.drawText("file://" + fileName, nStartX, template.getHeight() - nStepY/2, p);
 	        imgDisPlay.setImageBitmap(newb);
 	    }

@@ -8,7 +8,7 @@ import android.widget.Toast;
 public class CustomerInfo {
 	private String mName = null;
 	private ArrayList<ProductInfo> mPriceInfoList = null;
-	public final static int mMaxKind = 16;
+	public final static int mMaxKind = 17;
 	
 	public CustomerInfo(String name, ArrayList<ProductInfo> priceList) {
 		mName = name;
