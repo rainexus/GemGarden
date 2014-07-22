@@ -13,6 +13,6 @@
 	    android:horizontalSpacing="10dp"
 	    android:stretchMode="columnWidth"
 	    android:gravity="center"
-	/>	
+	/>
 
 </RelativeLayout>
