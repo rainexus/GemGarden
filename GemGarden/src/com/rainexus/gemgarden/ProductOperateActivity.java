@@ -163,6 +163,7 @@ public class ProductOperateActivity extends Activity {
 	}
 	
 	void Refresh() {
+		CustomerDB.BroadCastPriceInfoList(CustomerDB.GetCustomerInfoList().get(mPosition).GetProductPriceInfoList());
 		mImageAdapterWithCheck.Reset(CustomerDB.GetCustomerInfoList().get(mPosition).GetProductPriceStrList());
 		mImageAdapterWithCheck.notifyDataSetChanged();
 	}

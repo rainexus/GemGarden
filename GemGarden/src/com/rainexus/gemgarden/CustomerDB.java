@@ -23,10 +23,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
 import android.os.Environment;
 
 public class CustomerDB {
+	static boolean globalProductEdit = true;
 	static ArrayList<CustomerInfo> mCustomerInfoList = null;
 	static {
 		mCustomerInfoList = new ArrayList<CustomerInfo>();
@@ -95,6 +95,16 @@ public class CustomerDB {
 		return customerStrList;
 	}
 	
+	static void BroadCastPriceInfoList(ArrayList<ProductInfo> priceInfoList) {
+		if (!globalProductEdit)
+			return;
+		
+		for (int i=0; i<mCustomerInfoList.size(); ++i) {
+			mCustomerInfoList.get(i).SetProductPriceInfoList(priceInfoList);
+		}
+	}
+	
+	
 	static void ReadFromXml() {
 		InputStream inputstream = null;
 		try {
@@ -111,6 +121,11 @@ public class CustomerDB {
 		    Document document=builder.parse(inputstream);
 		    Element root=document.getDocumentElement();
 		    NodeList items=root.getElementsByTagName("customer");
+		    String globalProductEdit = root.getAttribute("GlobalProductEdit");
+		    if (globalProductEdit.equalsIgnoreCase("false"))
+		    	CustomerDB.globalProductEdit = false;
+		    else
+		    	CustomerDB.globalProductEdit = true;
 		    for(int i=0; i<items.getLength(); i++)
 		    {
 		    	Element item=(Element)items.item(i);
@@ -151,6 +166,10 @@ public class CustomerDB {
 		    DocumentBuilder builder=factory.newDocumentBuilder();
 		    Document document = builder.newDocument();
 		    Element root=document.createElement("customers");
+		    if (CustomerDB.globalProductEdit)
+		    	root.setAttribute("GlobalProductEdit", "true");
+		    else
+		    	root.setAttribute("GlobalProductEdit", "false");
 		    document.appendChild(root);
 		    
 		    for(int i=0; i<mCustomerInfoList.size(); i++)

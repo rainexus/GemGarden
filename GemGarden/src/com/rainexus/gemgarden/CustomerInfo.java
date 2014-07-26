@@ -27,6 +27,13 @@ public class CustomerInfo {
 		return mPriceInfoList;
 	}
 	
+	public void SetProductPriceInfoList(ArrayList<ProductInfo> priceInfoList) {
+		mPriceInfoList.clear();
+		for (int i=0; i<priceInfoList.size(); ++i) {
+			mPriceInfoList.add(priceInfoList.get(i));
+		}
+	}
+	
 	public void AddPriceInfo(ProductInfo priceInfo) {
 		for (int i=0; i<mPriceInfoList.size(); ++i) {
 			if (priceInfo.GetProductName().equals(mPriceInfoList.get(i).GetProductName())) {
