@@ -46,18 +46,15 @@ public class ProductListActivity extends Activity {
 	    		final ProductInfo priceInfo = customerInfo.GetProductPriceInfoList().get(fposition);
 	    		LayoutInflater factory = LayoutInflater.from(ProductListActivity.this);  
 	    		final View textEntryView = factory.inflate(R.layout.input_product_count_pop, null);  
-	    		final EditText editText = (EditText) textEntryView.findViewById(R.id.input_count_pop_count_editTextName); 
-	    		if (priceInfo.GetProductCount() > 0)
-	    			editText.setText(Integer.toString(priceInfo.GetProductCount()));
+	    		final EditText editText = (EditText) textEntryView.findViewById(R.id.input_count_pop_count_editTextName);
 	    		editText.setSelection(editText.getText().length());
 	    		
 	    		new AlertDialog.Builder(ProductListActivity.this)  
-	    		.setTitle("Edit Quantity")  
+	    		.setTitle("Edit Quantity, Now: " + Integer.toString(priceInfo.GetProductCount()))  
 	    		.setIcon(R.drawable.ic_launcher)  
-	    		.setView(textEntryView)  
-	    		.setPositiveButton("OK", new DialogInterface.OnClickListener() {  
-                    public void onClick(DialogInterface dialog,  
-                            int whichButton) {
+	    		.setView(textEntryView)
+	    		.setNeutralButton("Set", new DialogInterface.OnClickListener() {  
+                    public void onClick(DialogInterface dialog, int whichButton) {
                     	String input = editText.getText().toString().trim();
                     	if (input.length() == 0) {
                     		Toast.makeText(ProductListActivity.this, "Input is invalid!", Toast.LENGTH_SHORT).show();
@@ -71,10 +68,25 @@ public class ProductListActivity extends Activity {
                     	}
                     	Refresh();
                     }
-                })  
+                })              
+	    		.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+	    			 public void onClick(DialogInterface dialog, int whichButton) {
+	    				String input = editText.getText().toString().trim();
+                    	if (input.length() == 0) {
+                    		Toast.makeText(ProductListActivity.this, "Input is invalid!", Toast.LENGTH_SHORT).show();
+                    		return;
+                    	}
+                    	
+                    	int count = Integer.parseInt(input);
+                    	priceInfo.SetProductCount(priceInfo.GetProductCount() + count);
+                    	if (!customerInfo.CheckMaxKind(ProductListActivity.this)) {
+                    		priceInfo.SetProductCount(0);
+                    	}
+                    	Refresh();
+	                    }
+	    		})
 	    		.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {  
-                    public void onClick(DialogInterface dialog,  
-                            int whichButton) {
+                    public void onClick(DialogInterface dialog, int whichButton) {
                     }  
                 })  
 	    		.show();
