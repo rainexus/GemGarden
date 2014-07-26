@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">GemGarden</string>
-    <string name="action_customer_history">ODERS</string>
+    <string name="action_customer_history">ORDERS</string>
     <string name="action_customer_exit">EXIT</string>
     <string name="action_customer_info">Information</string>
     <string name="action_customer_operate">CustomerOperate</string>
