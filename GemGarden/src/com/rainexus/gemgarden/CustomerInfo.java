@@ -28,6 +28,9 @@ public class CustomerInfo {
 	}
 	
 	public void SetProductPriceInfoList(ArrayList<ProductInfo> priceInfoList) {
+		if (mPriceInfoList == priceInfoList)
+			return;
+
 		mPriceInfoList.clear();
 		for (int i=0; i<priceInfoList.size(); ++i) {
 			mPriceInfoList.add(priceInfoList.get(i));

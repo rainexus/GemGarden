@@ -175,6 +175,13 @@ public class ProductOperateActivity extends Activity {
 				Toast.makeText(ProductOperateActivity.this, name + " exists!", Toast.LENGTH_SHORT).show();
 				return false;
 			}
+			
+			if (CustomerDB.globalPriceUnique) {
+				if (priceInfoList.get(i).GetProductPrice() == price) {
+					Toast.makeText(ProductOperateActivity.this, "RM " + price/100 + "." + price%100 + " exists!", Toast.LENGTH_SHORT).show();
+					return false;
+				}
+			}
 		}
 		
 		return true;

@@ -27,6 +27,7 @@ import android.os.Environment;
 
 public class CustomerDB {
 	static boolean globalProductEdit = true;
+	static boolean globalPriceUnique = true;
 	static ArrayList<CustomerInfo> mCustomerInfoList = null;
 	static {
 		mCustomerInfoList = new ArrayList<CustomerInfo>();
@@ -69,6 +70,9 @@ public class CustomerDB {
 			if (mCustomerInfoList.get(i).GetName().equals(customerInfo.GetName())) {
 				throw new RuntimeException("AddCustomerInfo");
 			}
+		}
+		if (globalProductEdit && mCustomerInfoList.size() > 0) {
+			customerInfo.SetProductPriceInfoList(mCustomerInfoList.get(0).GetProductPriceInfoList());
 		}
 		mCustomerInfoList.add(customerInfo);
 	}
@@ -126,6 +130,13 @@ public class CustomerDB {
 		    	CustomerDB.globalProductEdit = false;
 		    else
 		    	CustomerDB.globalProductEdit = true;
+		    
+		    String globalPriceUnique = root.getAttribute("GlobalPriceUnique");
+		    if (globalPriceUnique.equalsIgnoreCase("false"))
+		    	CustomerDB.globalPriceUnique = false;
+		    else
+		    	CustomerDB.globalPriceUnique = true;
+		    
 		    for(int i=0; i<items.getLength(); i++)
 		    {
 		    	Element item=(Element)items.item(i);
@@ -166,10 +177,17 @@ public class CustomerDB {
 		    DocumentBuilder builder=factory.newDocumentBuilder();
 		    Document document = builder.newDocument();
 		    Element root=document.createElement("customers");
+		    
 		    if (CustomerDB.globalProductEdit)
 		    	root.setAttribute("GlobalProductEdit", "true");
 		    else
 		    	root.setAttribute("GlobalProductEdit", "false");
+		    
+		    if (CustomerDB.globalPriceUnique)
+		    	root.setAttribute("GlobalPriceUnique", "true");
+		    else
+		    	root.setAttribute("GlobalPriceUnique", "false");
+		    
 		    document.appendChild(root);
 		    
 		    for(int i=0; i<mCustomerInfoList.size(); i++)
