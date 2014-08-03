@@ -50,6 +50,7 @@ public class PreviewActivity extends Activity {
 	    String fileName = null;
 	    static Bitmap template = null;
 	    static Bitmap newb = null;
+	    String date = null;
 	                                                                                                            
 	    @Override
 	    protected void onCreate(Bundle savedInstanceState) {
@@ -145,7 +146,7 @@ public class PreviewActivity extends Activity {
 	        canvasTemp.drawLine(nEndX, nFirstY, nEndX, nLastY, p);
 	        
 	        // customer
-	        String date = (DateFormat.format("dd-MM-yyyy kk:mm:ss", new java.util.Date()).toString());
+	        date = (DateFormat.format("dd-MM-yyyy kk:mm:ss", new java.util.Date()).toString());
 	        String info = mCustomerInfo.GetGeneralStrWithDate(date);
 	        fileName = info;
 	        fileName = fileName.replace(' ', '_');
@@ -368,14 +369,17 @@ public class PreviewActivity extends Activity {
 			imageFile.createNewFile();
 			FileOutputStream fos = new FileOutputStream(imageFile);
 			// cols
-			String cols = "\"NO.\"" + ",\"Description\"" + ",\"Price(RM)\"" + ",\"Quantity\"" + ",\"Amount(RM)\"\n";
+			String cols = "\"Customer\"" + ",\"Date\"" + ",\"NO.\"" + ",\"Description\"" + ",\"Price(RM)\"" + ",\"Quantity\"" + ",\"Amount(RM)\"\n";
 			fos.write(cols.getBytes());
 			
 			// values
 			int nIdx = 0;
 	        for (int i=0; i<mPriceInfoList.size(); ++i) {
 	        	if (mPriceInfoList.get(i).GetProductCount() > 0){
-	        		String row = "\"" + Integer.toString(nIdx + 1) + "\"";
+	        		String row = "";
+	        		row += "\"" + mCustomerInfo.GetName() + "\"";
+	        		row += ",\"" + date + "\"";
+	        		row += ",\"" + Integer.toString(nIdx + 1) + "\"";
 	        		row += ",\"" + mPriceInfoList.get(i).GetProductName() + "\"";
 	        		row += ",\"" + CustomerInfo.Cents2RM(mPriceInfoList.get(i).GetProductPrice()) + "\"";
 	        		row += ",\"" + Integer.toString(mPriceInfoList.get(i).GetProductCount()) + "\"";
