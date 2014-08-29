@@ -14,8 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ImageAdapter extends BaseAdapter {
-	public final static int DeFaultGridWitth = 300;
-	public final static int DeFaultGridHeight = 150;
+	public final static int DeFaultGridWitth = 350;
+	public final static int DeFaultGridHeight = 300;
     protected Context mContext;
     protected int mIconID;    
     protected ArrayList<String> mStrList;
@@ -67,6 +67,7 @@ public class ImageAdapter extends BaseAdapter {
         textView.setLayoutParams(new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
+        textView.setTextSize(textView.getTextSize() + 3);
         textView.setText(mStrList.get(position));
         linearLayout.addView(textView);
 
