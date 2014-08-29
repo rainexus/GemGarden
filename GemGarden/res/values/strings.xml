@@ -17,6 +17,7 @@
     <string name="action_product_edit">ProductEdit</string>
     <string name="action_preview_save">PreviewSave</string>
     <string name="action_preview_share">PreviewShare</string>
+    <string name="action_file_select_all">SelectAll</string>
     <string name="action_file_share">Share</string>
     <string name="action_file_delete">Delete</string>
     <string name="title_activity_customer_operate">CustomerEdit</string>

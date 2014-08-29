@@ -33,6 +33,7 @@ import android.widget.AdapterView.OnItemClickListener;
 public class FileListActivity extends Activity {
 	ArrayList<String> mfileList = GetFileList();
 	ImageAdapter mImageAdapter = new ImageAdapter(FileListActivity.this, mfileList);
+	ArrayList<CheckBox> mCheckBoxList = new ArrayList<CheckBox>();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -161,6 +162,10 @@ public class FileListActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
+		    case R.id.action_file_select_all: {
+		    	SelectAll();
+	    		return true;
+	    	}
 	    	case R.id.action_file_share: {
 	    		ArrayList<String> fileNames = new ArrayList<String>();
 	    		Iterator<Integer> it = mImageAdapter.GetChecks().iterator();
@@ -215,6 +220,20 @@ public class FileListActivity extends Activity {
 	    return fileList;
 	}
 	
+	public void SelectAll() {
+    	boolean bSelectedAll = true;
+    	for (int i=0; i<mCheckBoxList.size(); ++i) {
+    		if (!mCheckBoxList.get(i).isChecked()) {
+    			bSelectedAll = false;
+    			break;
+    		}
+    	}
+    	
+		for (int i=0; i<mCheckBoxList.size(); ++i) {
+			mCheckBoxList.get(i).setChecked(!bSelectedAll);
+    	}
+    }
+	
 	private class ImageAdapter extends BaseAdapter {
 		public final static int DeFaultGridHeight = 100;
 	    protected Context mContext;
@@ -255,6 +274,7 @@ public class FileListActivity extends Activity {
 	    	linearLayout.setGravity(Gravity.CENTER_VERTICAL);
 
 	    	CheckBox checkBox = new CheckBox(mContext);
+	    	mCheckBoxList.add(checkBox);
 	        checkBox.setLayoutParams(new ViewGroup.LayoutParams(
 	                ViewGroup.LayoutParams.WRAP_CONTENT,
 	                ViewGroup.LayoutParams.WRAP_CONTENT));
