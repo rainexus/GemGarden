@@ -10,7 +10,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
@@ -49,7 +51,9 @@ public class ProductListActivity extends Activity {
 	    		final EditText editText = (EditText) textEntryView.findViewById(R.id.input_count_pop_count_editTextName);
 	    		editText.setSelection(editText.getText().length());
 	    		
-	    		new AlertDialog.Builder(ProductListActivity.this)  
+	    		
+	    		
+				final AlertDialog dialog = new AlertDialog.Builder(ProductListActivity.this)  
 	    		.setTitle("Edit Quantity, Now: " + Integer.toString(priceInfo.GetProductCount()))  
 	    		.setIcon(R.drawable.ic_launcher)  
 	    		.setView(textEntryView)
@@ -68,12 +72,21 @@ public class ProductListActivity extends Activity {
                     	}
                     	Refresh();
                     }
-                })              
-	    		.setPositiveButton("Add", new DialogInterface.OnClickListener() {
-	    			 public void onClick(DialogInterface dialog, int whichButton) {
-	    				String input = editText.getText().toString().trim();
+                })
+	    		.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {  
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    }  
+                })
+	    		.show();
+				
+				Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+				dialogButton.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						String input = editText.getText().toString().trim();
                     	if (input.length() == 0) {
                     		Toast.makeText(ProductListActivity.this, "Input is invalid!", Toast.LENGTH_SHORT).show();
+                    		dialog.dismiss();
                     		return;
                     	}
                     	
@@ -83,13 +96,9 @@ public class ProductListActivity extends Activity {
                     		priceInfo.SetProductCount(0);
                     	}
                     	Refresh();
-	                    }
-	    		})
-	    		.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {  
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                    }  
-                })  
-	    		.show();
+                    	dialog.dismiss();
+					}
+				});
 			}
 	    });
 	    

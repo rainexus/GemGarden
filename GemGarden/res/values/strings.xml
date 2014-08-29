@@ -23,6 +23,7 @@
     <string name="title_activity_customer_operate">CustomerEdit</string>
     <string name="title_activity_product_list">ProductList</string>
     <string name="title_activity_product_operate">ProductEdit</string>
+    <string name="input_count_pop_count_Add">Add</string>
     <string name="input_product_pop_price">Price(Cents):</string>
     <string name="input_product_pop_price_dot">Cents:</string>
     <string name="input_product_pop_name">Description:</string>

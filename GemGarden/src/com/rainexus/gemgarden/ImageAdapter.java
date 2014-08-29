@@ -67,7 +67,7 @@ public class ImageAdapter extends BaseAdapter {
         textView.setLayoutParams(new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
-        textView.setTextSize(textView.getTextSize() + 3);
+        textView.setTextSize(textView.getTextSize() + 2);
         textView.setText(mStrList.get(position));
         linearLayout.addView(textView);
 
