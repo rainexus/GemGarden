@@ -25,27 +25,29 @@ public final class R {
         public static final int ic_opened_folder=0x7f02000b;
         public static final int ic_pencil=0x7f02000c;
         public static final int ic_plus=0x7f02000d;
-        public static final int ic_share=0x7f02000e;
-        public static final int ic_swipe_right=0x7f02000f;
-        public static final int ic_text=0x7f020010;
-        public static final int ic_trash=0x7f020011;
-        public static final int im_template=0x7f020012;
+        public static final int ic_select_all=0x7f02000e;
+        public static final int ic_share=0x7f02000f;
+        public static final int ic_swipe_right=0x7f020010;
+        public static final int ic_text=0x7f020011;
+        public static final int ic_trash=0x7f020012;
+        public static final int im_template=0x7f020013;
     }
     public static final class id {
-        public static final int action_customer_exit=0x7f070013;
-        public static final int action_customer_history=0x7f070011;
-        public static final int action_customer_info=0x7f070014;
+        public static final int action_customer_exit=0x7f070014;
+        public static final int action_customer_history=0x7f070012;
+        public static final int action_customer_info=0x7f070015;
         public static final int action_customer_new=0x7f07000d;
-        public static final int action_customer_operate=0x7f070012;
+        public static final int action_customer_operate=0x7f070013;
         public static final int action_customer_remove=0x7f07000e;
-        public static final int action_file_delete=0x7f070010;
-        public static final int action_file_share=0x7f07000f;
-        public static final int action_preview_save=0x7f07001a;
-        public static final int action_product_new=0x7f070018;
-        public static final int action_product_operate=0x7f070017;
-        public static final int action_product_preview=0x7f070015;
-        public static final int action_product_remove=0x7f070019;
-        public static final int action_product_trash=0x7f070016;
+        public static final int action_file_delete=0x7f070011;
+        public static final int action_file_select_all=0x7f07000f;
+        public static final int action_file_share=0x7f070010;
+        public static final int action_preview_save=0x7f07001b;
+        public static final int action_product_new=0x7f070019;
+        public static final int action_product_operate=0x7f070018;
+        public static final int action_product_preview=0x7f070016;
+        public static final int action_product_remove=0x7f07001a;
+        public static final int action_product_trash=0x7f070017;
         public static final int activity_customer_edit_gridview=0x7f070000;
         public static final int activity_main_gridview=0x7f070001;
         public static final int activity_price_list_gridview=0x7f070004;
@@ -87,8 +89,9 @@ public final class R {
         public static final int action_customer_new=0x7f040005;
         public static final int action_customer_operate=0x7f040004;
         public static final int action_customer_remove=0x7f040006;
-        public static final int action_file_delete=0x7f040011;
-        public static final int action_file_share=0x7f040010;
+        public static final int action_file_delete=0x7f040012;
+        public static final int action_file_select_all=0x7f040010;
+        public static final int action_file_share=0x7f040011;
         public static final int action_preview_save=0x7f04000e;
         public static final int action_preview_share=0x7f04000f;
         public static final int action_product_edit=0x7f04000d;
@@ -98,16 +101,16 @@ public final class R {
         public static final int action_product_remove=0x7f04000c;
         public static final int action_product_trash=0x7f040008;
         public static final int app_name=0x7f040000;
-        public static final int contentDescription=0x7f04001a;
-        public static final int input_product_pop_name=0x7f040017;
-        public static final int input_product_pop_price=0x7f040015;
-        public static final int input_product_pop_price_dot=0x7f040016;
-        public static final int preview_title=0x7f040019;
-        public static final int title_activity_customer_operate=0x7f040012;
-        public static final int title_activity_file_list=0x7f04001b;
-        public static final int title_activity_product_list=0x7f040013;
-        public static final int title_activity_product_operate=0x7f040014;
-        public static final int title_activity_report=0x7f040018;
+        public static final int contentDescription=0x7f04001b;
+        public static final int input_product_pop_name=0x7f040018;
+        public static final int input_product_pop_price=0x7f040016;
+        public static final int input_product_pop_price_dot=0x7f040017;
+        public static final int preview_title=0x7f04001a;
+        public static final int title_activity_customer_operate=0x7f040013;
+        public static final int title_activity_file_list=0x7f04001c;
+        public static final int title_activity_product_list=0x7f040014;
+        public static final int title_activity_product_operate=0x7f040015;
+        public static final int title_activity_report=0x7f040019;
     }
     public static final class style {
         /** 
