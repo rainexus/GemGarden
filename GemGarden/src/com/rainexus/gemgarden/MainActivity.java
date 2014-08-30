@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,8 +25,17 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		int gridviewWidth = 0;
+		if (metrics.heightPixels > metrics.widthPixels)
+			gridviewWidth = metrics.widthPixels /5;
+		else
+			gridviewWidth = metrics.heightPixels /5;
+		gridviewWidth *= 2;
+		
 		GridView gridview = (GridView) findViewById(R.id.activity_main_gridview);
-		gridview.setColumnWidth(ImageAdapter.DeFaultGridWitth);
+		gridview.setColumnWidth(gridviewWidth);
 	    gridview.setAdapter(mImageAdapter);
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 			@Override

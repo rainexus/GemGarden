@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -38,8 +39,18 @@ public class ProductOperateActivity extends Activity {
 	    		R.drawable.ic_flower,
 	    		CustomerDB.GetCustomerInfoList().get(mPosition).GetProductPriceStrList(),
 	    			ImageAdapter.DeFaultGridWitth, ImageAdapter.DeFaultGridHeight, CustomerDB.globalProductOperateActivityTextSize);
+		
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		int gridviewWidth = 0;
+		if (metrics.heightPixels > metrics.widthPixels)
+			gridviewWidth = metrics.widthPixels /5;
+		else
+			gridviewWidth = metrics.heightPixels /5;
+		gridviewWidth *= 2;
+		
 		GridView gridview = (GridView) findViewById(R.id.activity_price_operate_gridview);
-		gridview.setColumnWidth(ImageAdapter.DeFaultGridWitth);
+		gridview.setColumnWidth(gridviewWidth);
 	    gridview.setAdapter(mImageAdapterWithCheck);
 
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
