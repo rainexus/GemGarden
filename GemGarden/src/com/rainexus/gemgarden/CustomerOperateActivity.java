@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,17 +21,27 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class CustomerOperateActivity extends Activity {
-	final private ImageAdapterWithCheck mImageAdapterWithCheck = new ImageAdapterWithCheck(this,
-				R.drawable.ic_customer1, CustomerDB.GetCustomerStrList(),
-				ImageAdapter.DeFaultGridWitth, ImageAdapter.DeFaultGridHeight, CustomerDB.globalCustomerOperateActivityTextSize);
+	private ImageAdapterWithCheck mImageAdapterWithCheck = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_customer_edit);
 		
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		int gridviewWidth = 0;
+		if (metrics.heightPixels > metrics.widthPixels)
+			gridviewWidth = metrics.widthPixels /9;
+		else
+			gridviewWidth = metrics.heightPixels /9;
+		gridviewWidth *= 4;
+		
+		mImageAdapterWithCheck = new ImageAdapterWithCheck(this,
+					R.drawable.ic_customer1, CustomerDB.GetCustomerStrList(),
+					gridviewWidth, ImageAdapter.DeFaultGridHeight, CustomerDB.globalCustomerOperateActivityTextSize);
+		
 		GridView gridview = (GridView) findViewById(R.id.activity_customer_edit_gridview);
-		gridview.setColumnWidth(ImageAdapter.DeFaultGridWitth);
 	    gridview.setAdapter(mImageAdapterWithCheck);
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 			@Override

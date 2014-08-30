@@ -16,9 +16,7 @@ import android.widget.GridView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class MainActivity extends Activity {
-	private ImageAdapter mImageAdapter = new ImageAdapter(this,
-    		R.drawable.ic_customer1, CustomerDB.GetCustomerStrList(), ImageAdapter.DeFaultGridWitth,
-    			ImageAdapter.DeFaultGridHeight, CustomerDB.globalMainActivityTextSize);
+	private ImageAdapter mImageAdapter = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +27,16 @@ public class MainActivity extends Activity {
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		int gridviewWidth = 0;
 		if (metrics.heightPixels > metrics.widthPixels)
-			gridviewWidth = metrics.widthPixels /5;
+			gridviewWidth = metrics.widthPixels /9;
 		else
-			gridviewWidth = metrics.heightPixels /5;
-		gridviewWidth *= 2;
+			gridviewWidth = metrics.heightPixels /9;
+		gridviewWidth *= 4;
+		
+		mImageAdapter = new ImageAdapter(this,
+	    		R.drawable.ic_customer1, CustomerDB.GetCustomerStrList(), gridviewWidth,
+	    			ImageAdapter.DeFaultGridHeight, CustomerDB.globalMainActivityTextSize);
 		
 		GridView gridview = (GridView) findViewById(R.id.activity_main_gridview);
-		gridview.setColumnWidth(gridviewWidth);
 	    gridview.setAdapter(mImageAdapter);
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 			@Override

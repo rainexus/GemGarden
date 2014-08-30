@@ -34,22 +34,21 @@ public class ProductListActivity extends Activity {
 		if (mPosition == ~0)
 			throw new RuntimeException("position");
 		
-		mImageAdapter = new ImageAdapter(this,
-	    		R.drawable.ic_flower,
-	    		CustomerDB.GetCustomerInfoList().get(mPosition).GetProductPriceCountStrList(), ImageAdapter.DeFaultGridWitth,
-	    			ImageAdapter.DeFaultGridHeight, CustomerDB.globalProductListActivityTextSize);
-		
 		DisplayMetrics metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		int gridviewWidth = 0;
 		if (metrics.heightPixels > metrics.widthPixels)
-			gridviewWidth = metrics.widthPixels /5;
+			gridviewWidth = metrics.widthPixels /9;
 		else
-			gridviewWidth = metrics.heightPixels /5;
-		gridviewWidth *= 2;
+			gridviewWidth = metrics.heightPixels /9;
+		gridviewWidth *= 4;
 		
-		GridView gridview = (GridView) findViewById(R.id.activity_price_list_gridview);
-		gridview.setColumnWidth(gridviewWidth);
+		mImageAdapter = new ImageAdapter(this,
+	    		R.drawable.ic_flower,
+	    		CustomerDB.GetCustomerInfoList().get(mPosition).GetProductPriceCountStrList(), gridviewWidth,
+	    			ImageAdapter.DeFaultGridHeight, CustomerDB.globalProductListActivityTextSize);
+		
+		GridView gridview = (GridView) findViewById(R.id.activity_price_list_gridview);	
 	    gridview.setAdapter(mImageAdapter);
 
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
