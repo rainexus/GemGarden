@@ -16,22 +16,29 @@ import android.widget.TextView;
 public class ImageAdapter extends BaseAdapter {
 	public final static int DeFaultGridWitth = 350;
 	public final static int DeFaultGridHeight = 300;
+	protected int mTextSize = 0;
     protected Context mContext;
     protected int mIconID;    
     protected ArrayList<String> mStrList;
     protected int mGridWitth;
     protected int mGridHeight;
 
-    public ImageAdapter(Context c, int iconID, ArrayList<String> strList, int gridWitth, int gridHeight) {
+    public ImageAdapter(Context c, int iconID, ArrayList<String> strList, int gridWitth, int gridHeight, int textSize) {
         mContext = c;
         mIconID = iconID;
         mStrList = strList;
         mGridWitth = gridWitth;
         mGridHeight = gridHeight;
+        mTextSize = textSize;
     }
 
     public void Reset(ArrayList<String> strList) {
     	 mStrList = strList;
+    }
+    
+    public void SetTextSize(int textSize) {
+    	mTextSize = textSize;
+    	CustomerDB.WriteToXml();
     }
     
     public int getCount() {
@@ -67,7 +74,8 @@ public class ImageAdapter extends BaseAdapter {
         textView.setLayoutParams(new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
-        textView.setTextSize(textView.getTextSize() + 2);
+
+        textView.setTextSize(mTextSize);
         textView.setText(mStrList.get(position));
         linearLayout.addView(textView);
 

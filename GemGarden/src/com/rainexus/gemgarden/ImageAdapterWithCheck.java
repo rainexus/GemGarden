@@ -17,8 +17,8 @@ import android.widget.TextView;
 public class ImageAdapterWithCheck extends ImageAdapter {
 	HashSet<Integer> mChecks = new HashSet<Integer>();
 	
-	public ImageAdapterWithCheck(Context c, int iconID, ArrayList<String> strList, int gridWitth, int gridHeight) {
-		super(c, iconID, strList, gridWitth, gridHeight);
+	public ImageAdapterWithCheck(Context c, int iconID, ArrayList<String> strList, int gridWitth, int gridHeight, int textSizeIncrease) {
+		super(c, iconID, strList, gridWitth, gridHeight, textSizeIncrease);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -73,7 +73,7 @@ public class ImageAdapterWithCheck extends ImageAdapter {
         textView.setLayoutParams(new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
-        textView.setTextSize(textView.getTextSize() + 2);
+        textView.setTextSize(mTextSize);
         textView.setText(mStrList.get(position));
         linearLayout.addView(textView);
         

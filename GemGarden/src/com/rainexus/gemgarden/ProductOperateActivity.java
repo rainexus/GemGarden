@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,7 +36,8 @@ public class ProductOperateActivity extends Activity {
 		
 		mImageAdapterWithCheck = new ImageAdapterWithCheck(this,
 	    		R.drawable.ic_flower,
-	    		CustomerDB.GetCustomerInfoList().get(mPosition).GetProductPriceStrList(), ImageAdapter.DeFaultGridWitth, ImageAdapter.DeFaultGridHeight);
+	    		CustomerDB.GetCustomerInfoList().get(mPosition).GetProductPriceStrList(),
+	    			ImageAdapter.DeFaultGridWitth, ImageAdapter.DeFaultGridHeight, CustomerDB.globalProductOperateActivityTextSize);
 		GridView gridview = (GridView) findViewById(R.id.activity_price_operate_gridview);
 		gridview.setColumnWidth(ImageAdapter.DeFaultGridWitth);
 	    gridview.setAdapter(mImageAdapterWithCheck);
@@ -81,6 +83,25 @@ public class ProductOperateActivity extends Activity {
 	    		.show();
 			}
 	    });
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+			if (CustomerDB.globalProductOperateActivityTextSize > 10) {
+				--CustomerDB.globalProductOperateActivityTextSize;
+				Refresh();
+			}
+			return true;
+		} else if(keyCode == KeyEvent.KEYCODE_VOLUME_UP){
+			if (CustomerDB.globalProductOperateActivityTextSize < 80) {
+				++CustomerDB.globalProductOperateActivityTextSize;
+				Refresh();
+			}
+			return true;
+		} 
+		
+		return super.onKeyDown(keyCode, event);
 	}
 	
 	@Override
@@ -164,6 +185,7 @@ public class ProductOperateActivity extends Activity {
 	
 	void Refresh() {
 		CustomerDB.BroadCastPriceInfoList(CustomerDB.GetCustomerInfoList().get(mPosition).GetProductPriceInfoList());
+		mImageAdapterWithCheck.SetTextSize(CustomerDB.globalProductOperateActivityTextSize);
 		mImageAdapterWithCheck.Reset(CustomerDB.GetCustomerInfoList().get(mPosition).GetProductPriceStrList());
 		mImageAdapterWithCheck.notifyDataSetChanged();
 	}

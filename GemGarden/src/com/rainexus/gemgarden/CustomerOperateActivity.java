@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,7 +21,8 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class CustomerOperateActivity extends Activity {
 	final private ImageAdapterWithCheck mImageAdapterWithCheck = new ImageAdapterWithCheck(this,
-				R.drawable.ic_customer1, CustomerDB.GetCustomerStrList(), ImageAdapter.DeFaultGridWitth, ImageAdapter.DeFaultGridHeight);
+				R.drawable.ic_customer1, CustomerDB.GetCustomerStrList(),
+				ImageAdapter.DeFaultGridWitth, ImageAdapter.DeFaultGridHeight, CustomerDB.globalCustomerOperateActivityTextSize);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,25 @@ public class CustomerOperateActivity extends Activity {
 	    		.show();
 			}
 	    });
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+			if (CustomerDB.globalCustomerOperateActivityTextSize > 10) {
+				--CustomerDB.globalCustomerOperateActivityTextSize;
+				Refresh();
+			}
+			return true;
+		} else if(keyCode == KeyEvent.KEYCODE_VOLUME_UP){
+			if (CustomerDB.globalCustomerOperateActivityTextSize < 80) {
+				++CustomerDB.globalCustomerOperateActivityTextSize;
+				Refresh();
+			}
+			return true;
+		} 
+		
+		return super.onKeyDown(keyCode, event);
 	}
 	
 	@Override
@@ -140,6 +161,7 @@ public class CustomerOperateActivity extends Activity {
 	
 	private void Refresh() {
 		mImageAdapterWithCheck.Reset(CustomerDB.GetCustomerStrList());
+		mImageAdapterWithCheck.SetTextSize(CustomerDB.globalCustomerOperateActivityTextSize);
     	mImageAdapterWithCheck.notifyDataSetChanged();
 	}
 	

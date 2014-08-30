@@ -28,6 +28,10 @@ import android.os.Environment;
 public class CustomerDB {
 	static boolean globalProductEdit = true;
 	static boolean globalPriceUnique = true;
+	static int globalMainActivityTextSize = 20;
+	static int globalProductListActivityTextSize = 20;
+	static int globalProductOperateActivityTextSize = 20;
+	static int globalCustomerOperateActivityTextSize = 20;
 	static ArrayList<CustomerInfo> mCustomerInfoList = null;
 	static {
 		mCustomerInfoList = new ArrayList<CustomerInfo>();
@@ -137,6 +141,26 @@ public class CustomerDB {
 		    else
 		    	CustomerDB.globalPriceUnique = true;
 		    
+		    String globalMainActivityTextSize = root.getAttribute("GlobalMainActivityTextSize");
+		    if (globalMainActivityTextSize.length() > 0) {
+		    	CustomerDB.globalMainActivityTextSize = Integer.parseInt(globalMainActivityTextSize);
+		    }
+		    
+		    String globalProductListActivityTextSize = root.getAttribute("GlobalProductListActivityTextSize");
+		    if (globalProductListActivityTextSize.length() > 0) {
+		    	CustomerDB.globalProductListActivityTextSize = Integer.parseInt(globalProductListActivityTextSize);
+		    }
+		    
+		    String globalProductOperateActivityTextSize = root.getAttribute("GlobalProductOperateActivityTextSize");
+		    if (globalProductOperateActivityTextSize.length() > 0) {
+		    	CustomerDB.globalProductOperateActivityTextSize = Integer.parseInt(globalProductOperateActivityTextSize);
+		    }
+		    
+		    String globalCustomerOperateActivityTextSize = root.getAttribute("GlobalCustomerOperateActivityTextSize");
+		    if (globalCustomerOperateActivityTextSize.length() > 0) {
+		    	CustomerDB.globalCustomerOperateActivityTextSize = Integer.parseInt(globalCustomerOperateActivityTextSize);
+		    }
+		    
 		    for(int i=0; i<items.getLength(); i++)
 		    {
 		    	Element item=(Element)items.item(i);
@@ -187,6 +211,11 @@ public class CustomerDB {
 		    	root.setAttribute("GlobalPriceUnique", "true");
 		    else
 		    	root.setAttribute("GlobalPriceUnique", "false");
+		    
+		    root.setAttribute("GlobalMainActivityTextSize", Integer.toString(CustomerDB.globalMainActivityTextSize));
+		    root.setAttribute("GlobalProductListActivityTextSize", Integer.toString(CustomerDB.globalProductListActivityTextSize));
+		    root.setAttribute("GlobalProductOperateActivityTextSize", Integer.toString(CustomerDB.globalProductOperateActivityTextSize));
+		    root.setAttribute("GlobalCustomerOperateActivityTextSize", Integer.toString(CustomerDB.globalCustomerOperateActivityTextSize));
 		    
 		    document.appendChild(root);
 		    

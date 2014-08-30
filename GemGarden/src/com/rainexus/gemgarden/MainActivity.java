@@ -1,13 +1,11 @@
 package com.rainexus.gemgarden;
 
-import java.io.File;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,7 +16,8 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class MainActivity extends Activity {
 	private ImageAdapter mImageAdapter = new ImageAdapter(this,
-    		R.drawable.ic_customer1, CustomerDB.GetCustomerStrList(), ImageAdapter.DeFaultGridWitth, ImageAdapter.DeFaultGridHeight);
+    		R.drawable.ic_customer1, CustomerDB.GetCustomerStrList(), ImageAdapter.DeFaultGridWitth,
+    			ImageAdapter.DeFaultGridHeight, CustomerDB.globalMainActivityTextSize);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +34,25 @@ public class MainActivity extends Activity {
 				startPriceListActivity(position);
 			}
 	    });
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+			if (CustomerDB.globalMainActivityTextSize > 10) {
+				--CustomerDB.globalMainActivityTextSize;
+				Refresh();
+			}
+			return true;
+		} else if(keyCode == KeyEvent.KEYCODE_VOLUME_UP){
+			if (CustomerDB.globalMainActivityTextSize < 80) {
+				++CustomerDB.globalMainActivityTextSize;
+				Refresh();
+			}
+			return true;
+		} 
+		
+		return super.onKeyDown(keyCode, event);
 	}
 	
 	@Override
@@ -104,6 +122,7 @@ public class MainActivity extends Activity {
 	}
 	
 	private void Refresh() {
+		mImageAdapter.SetTextSize(CustomerDB.globalMainActivityTextSize);
 		mImageAdapter.Reset(CustomerDB.GetCustomerStrList());
 		mImageAdapter.notifyDataSetChanged();
 	}

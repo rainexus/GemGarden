@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,7 +35,8 @@ public class ProductListActivity extends Activity {
 		
 		mImageAdapter = new ImageAdapter(this,
 	    		R.drawable.ic_flower,
-	    		CustomerDB.GetCustomerInfoList().get(mPosition).GetProductPriceCountStrList(), ImageAdapter.DeFaultGridWitth, ImageAdapter.DeFaultGridHeight);
+	    		CustomerDB.GetCustomerInfoList().get(mPosition).GetProductPriceCountStrList(), ImageAdapter.DeFaultGridWitth,
+	    			ImageAdapter.DeFaultGridHeight, CustomerDB.globalProductListActivityTextSize);
 		GridView gridview = (GridView) findViewById(R.id.activity_price_list_gridview);
 		gridview.setColumnWidth(ImageAdapter.DeFaultGridWitth);
 	    gridview.setAdapter(mImageAdapter);
@@ -106,6 +108,25 @@ public class ProductListActivity extends Activity {
 	}
 	
 	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+			if (CustomerDB.globalProductListActivityTextSize > 10) {
+				--CustomerDB.globalProductListActivityTextSize;
+				Refresh();
+			}
+			return true;
+		} else if(keyCode == KeyEvent.KEYCODE_VOLUME_UP){
+			if (CustomerDB.globalProductListActivityTextSize < 80) {
+				++CustomerDB.globalProductListActivityTextSize;
+				Refresh();
+			}
+			return true;
+		} 
+		
+		return super.onKeyDown(keyCode, event);
+	}
+	
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    // Inflate the menu items for use in the action bar
 	    MenuInflater inflater = getMenuInflater();
@@ -163,6 +184,7 @@ public class ProductListActivity extends Activity {
 	
 	private void Refresh() {
 		setTitle(CustomerDB.GetCustomerInfoList().get(mPosition).GetGeneralStr());
+		mImageAdapter.SetTextSize(CustomerDB.globalProductListActivityTextSize);
 		mImageAdapter.Reset(CustomerDB.GetCustomerInfoList().get(mPosition).GetProductPriceCountStrList());
 		mImageAdapter.notifyDataSetChanged();
 	}
