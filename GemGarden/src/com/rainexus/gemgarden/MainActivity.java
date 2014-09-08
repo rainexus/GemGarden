@@ -26,17 +26,17 @@ public class MainActivity extends Activity {
 		DisplayMetrics metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		double gridviewWidthUnit = 0;
-		if (metrics.heightPixels < metrics.widthPixels)
-			gridviewWidthUnit = metrics.widthPixels /17;
+		if (metrics.heightPixels > metrics.widthPixels)
+			gridviewWidthUnit = metrics.widthPixels /10;
 		else
-			gridviewWidthUnit = metrics.heightPixels /17;
+			gridviewWidthUnit = metrics.heightPixels /10;
 		
 		mImageAdapter = new ImageAdapter(this,
-	    		R.drawable.ic_customer1, CustomerDB.GetCustomerStrList(), (int)(gridviewWidthUnit * 4),
-	    			ImageAdapter.DeFaultGridHeight, CustomerDB.globalMainActivityTextSize);
+	    		R.drawable.ic_customer1, CustomerDB.GetCustomerStrList(), (int)(gridviewWidthUnit * 3),
+	    		(int)(gridviewWidthUnit * 3), CustomerDB.globalMainActivityTextSize);
 		
 		GridView gridview = (GridView) findViewById(R.id.activity_main_gridview);
-		gridview.setNumColumns((int)(metrics.widthPixels / 4.25 / gridviewWidthUnit));
+		gridview.setNumColumns((int)(metrics.widthPixels / 3.3 / gridviewWidthUnit));
 	    gridview.setAdapter(mImageAdapter);
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 			@Override

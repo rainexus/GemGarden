@@ -31,18 +31,18 @@ public class CustomerOperateActivity extends Activity {
 		DisplayMetrics metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		double gridviewWidthUnit = 0;
-		if (metrics.heightPixels < metrics.widthPixels)
-			gridviewWidthUnit = metrics.widthPixels /17;
+		if (metrics.heightPixels > metrics.widthPixels)
+			gridviewWidthUnit = metrics.widthPixels /10;
 		else
-			gridviewWidthUnit = metrics.heightPixels /17;
+			gridviewWidthUnit = metrics.heightPixels /10;
 		
 		mImageAdapterWithCheck = new ImageAdapterWithCheck(this,
 					R.drawable.ic_customer1, CustomerDB.GetCustomerStrList(),
-					(int)(gridviewWidthUnit * 4), ImageAdapter.DeFaultGridHeight, CustomerDB.globalCustomerOperateActivityTextSize);
+					(int)(gridviewWidthUnit * 3), (int)(gridviewWidthUnit * 3), CustomerDB.globalCustomerOperateActivityTextSize);
 		
 		GridView gridview = (GridView) findViewById(R.id.activity_customer_edit_gridview);
 	    gridview.setAdapter(mImageAdapterWithCheck);
-	    gridview.setNumColumns((int)(metrics.widthPixels / 4.25 / gridviewWidthUnit));
+	    gridview.setNumColumns((int)(metrics.widthPixels / 3.3 / gridviewWidthUnit));
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,

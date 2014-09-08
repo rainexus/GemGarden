@@ -38,19 +38,19 @@ public class ProductOperateActivity extends Activity {
 		DisplayMetrics metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		double gridviewWidthUnit = 0;
-		if (metrics.heightPixels < metrics.widthPixels)
-			gridviewWidthUnit = metrics.widthPixels /17;
+		if (metrics.heightPixels > metrics.widthPixels)
+			gridviewWidthUnit = metrics.widthPixels /10;
 		else
-			gridviewWidthUnit = metrics.heightPixels /17;
+			gridviewWidthUnit = metrics.heightPixels /10;
 		
 		mImageAdapterWithCheck = new ImageAdapterWithCheck(this,
 	    		R.drawable.ic_flower,
 	    		CustomerDB.GetCustomerInfoList().get(mPosition).GetProductPriceStrList(),
-	    		(int)(gridviewWidthUnit * 4), ImageAdapter.DeFaultGridHeight, CustomerDB.globalProductOperateActivityTextSize);
+	    		(int)(gridviewWidthUnit * 3), (int)(gridviewWidthUnit * 3), CustomerDB.globalProductOperateActivityTextSize);
 		
 		GridView gridview = (GridView) findViewById(R.id.activity_price_operate_gridview);
 	    gridview.setAdapter(mImageAdapterWithCheck);
-	    gridview.setNumColumns((int)(metrics.widthPixels / 4.25 / gridviewWidthUnit));
+	    gridview.setNumColumns((int)(metrics.widthPixels / 3.3 / gridviewWidthUnit));
 
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 			@Override
