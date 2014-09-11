@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >    
+    <!-- Settings, should always be in the overflow -->
+    <item android:id="@+id/action_product_new"
+          android:icon="@drawable/ic_plus"
+          android:title="@string/action_product_new"
+          android:showAsAction="ifRoom" />
+    <item android:id="@+id/action_product_remove"
+          android:icon="@drawable/ic_minus"
+          android:title="@string/action_product_remove"
+          android:showAsAction="ifRoom" />
+</menu>

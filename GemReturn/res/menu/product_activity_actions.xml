@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >    
+    <!-- Settings, should always be in the overflow -->
+    <item android:id="@+id/action_product_preview"
+          android:title="@string/action_product_preview"
+          android:icon="@drawable/ic_checkout"
+          android:showAsAction="ifRoom" />
+    <item android:id="@+id/action_product_trash"
+          android:icon="@drawable/ic_trash"
+          android:title="@string/action_product_trash"
+          android:showAsAction="ifRoom" />
+    <item android:id="@+id/action_product_operate"
+          android:icon="@drawable/ic_pencil"
+          android:title="@string/action_product_operate"
+          android:showAsAction="ifRoom" />
+</menu>

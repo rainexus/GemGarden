@@ -1,0 +1,7 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >    
+    <!-- Settings, should always be in the overflow -->
+    <item android:id="@+id/action_preview_save"
+          android:icon="@drawable/ic_checkout"
+          android:title="@string/action_preview_save"
+          android:showAsAction="ifRoom" />
+</menu>
