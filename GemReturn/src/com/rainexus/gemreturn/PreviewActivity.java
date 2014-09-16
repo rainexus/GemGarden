@@ -381,7 +381,7 @@ public class PreviewActivity extends Activity {
 	        		row += ",\"" + date + "\"";
 	        		row += ",\"" + Integer.toString(nIdx + 1) + "\"";
 	        		row += ",\"" + mPriceInfoList.get(i).GetProductName() + "\"";
-	        		row += ",\"" + CustomerInfo.Cents2RM(-mPriceInfoList.get(i).GetProductPrice()) + "\"";
+	        		row += ",\"" + CustomerInfo.Cents2RM(mPriceInfoList.get(i).GetProductPrice()) + "\"";
 	        		row += ",\"" + Integer.toString(-mPriceInfoList.get(i).GetProductCount()) + "\"";
 	        		row += ",\"" + CustomerInfo.Cents2RM(-mPriceInfoList.get(i).GetProductPrice()*mPriceInfoList.get(i).GetProductCount()) + "\"\n";			       
 			        ++nIdx;
