@@ -34,6 +34,7 @@ public class FileListActivity extends Activity {
 	ArrayList<String> mfileList = GetFileList();
 	ImageAdapter mImageAdapter = new ImageAdapter(FileListActivity.this, mfileList);
 	ArrayList<CheckBox> mCheckBoxList = new ArrayList<CheckBox>();
+	HashSet<Integer> mChecks = new HashSet<Integer>();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -229,8 +230,17 @@ public class FileListActivity extends Activity {
     		}
     	}
     	
-		for (int i=0; i<mCheckBoxList.size(); ++i) {
-			mCheckBoxList.get(i).setChecked(!bSelectedAll);
+    	if (bSelectedAll) {
+    		mChecks.clear();
+    		for (int i=0; i<mCheckBoxList.size(); ++i) {
+    			mCheckBoxList.get(i).setChecked(false);
+        	}
+    	} else {
+    		mChecks.clear();
+    		for (int i=0; i<mCheckBoxList.size(); ++i) {
+    			mCheckBoxList.get(i).setChecked(true);
+    			mChecks.add(i);
+        	}
     	}
     }
 	
@@ -238,7 +248,6 @@ public class FileListActivity extends Activity {
 		public final static int DeFaultGridHeight = 100;
 	    protected Context mContext;
 	    protected ArrayList<String> mStrList;
-	    HashSet<Integer> mChecks = new HashSet<Integer>();
 
 	    public ImageAdapter(Context c, ArrayList<String> strList) {
 	        mContext = c;
