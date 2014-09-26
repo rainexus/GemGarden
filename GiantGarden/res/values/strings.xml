@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GiantGarden</string>
+    <string name="action_customer_history">ORDERS</string>
+    <string name="action_customer_exit">EXIT</string>
+    <string name="action_customer_info">Information</string>
+    <string name="action_customer_operate">CustomerOperate</string>
+    <string name="action_customer_new">customerNew</string>
+    <string name="action_customer_remove">customerRemove</string>
+    <string name="action_customer_edit">customerEdit</string>
+    <string name="action_product_trash">OrderTrash</string>
+    <string name="action_product_operate">ProductOperate</string>
+    <string name="action_product_preview">Checkout</string>
+    <string name="action_product_new">ProductNew</string>
+    <string name="action_product_remove">ProductRemove</string>
+    <string name="action_product_edit">ProductEdit</string>
+    <string name="action_preview_save">PreviewSave</string>
+    <string name="action_preview_share">PreviewShare</string>
+    <string name="action_file_select_all">SelectAll</string>
+    <string name="action_file_share">Share</string>
+    <string name="action_file_delete">Delete</string>
+    <string name="title_activity_customer_operate">CustomerEdit</string>
+    <string name="title_activity_product_list">ProductList</string>
+    <string name="title_activity_product_operate">ProductEdit</string>
+    <string name="input_count_pop_count_Add">Add</string>
+    <string name="input_product_pop_price">Price(Cents):</string>
+    <string name="input_product_pop_price_dot">Cents:</string>
+    <string name="input_product_pop_name">Description:</string>
+    <string name="title_activity_report">OrderList</string>
+    <string name="preview_title">preview_title</string>
+    <string name="contentDescription">Template</string>
+    <string name="title_activity_file_list">FileListActivity</string>
+
+</resources>
