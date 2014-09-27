@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">TescoReturn</string>
+    <string name="app_name">Tesco Return</string>
     <string name="action_customer_history">ORDERS</string>
     <string name="action_customer_exit">EXIT</string>
     <string name="action_customer_info">Information</string>
