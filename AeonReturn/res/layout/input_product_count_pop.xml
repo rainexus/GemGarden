@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >  
+  
+    <EditText  
+        android:id="@+id/input_count_pop_count_editTextName"  
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number" >
+    </EditText>   
+  
+    <Button
+        android:id="@+id/dialogButtonOK"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:textSize="40sp"
+        android:text="@string/input_count_pop_count_Add" >
+     </Button>
+    
+</LinearLayout>
